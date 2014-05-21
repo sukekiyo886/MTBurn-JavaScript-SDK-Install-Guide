@@ -1,7 +1,7 @@
 # 目次
 
-- [InStream 広告](#InStream 広告)
-  - [Getting Started](#Getting Started)
+- [InStream 広告](#instream-広告)
+  - [Getting Started](#getting-started)
     - [広告枠の登録と設定](#広告枠の登録と設定)
     - [テンプレートの記述](#テンプレートの記述)
     - [広告挿入位置の指定](#広告挿入位置の指定)
