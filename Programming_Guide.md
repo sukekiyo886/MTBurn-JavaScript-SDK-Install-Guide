@@ -113,14 +113,14 @@ var instance = MTBADVS.InStream.defaultRun();
 ```html
 <div data-advs-adspot-id="iv7wySo2K" style="display:none"></div>
 ```
-3. フィード追加読み込み後に SDK の `reloadAd()` メソッドを呼び出します。呼び出し後に広告案件の追加取得と表示を行います。
+3. フィード追加読み込み後に SDK の `reloadAds()` メソッドを呼び出します。呼び出し後に広告案件の追加取得と表示を行います。
 ```javascript
 // 追加フィードの読み込み後に呼び出される関数の例
 function onAdditionalFeedLoaded() {
     // ...
 
-    // SDK の reloadAd メソッドを呼び出し
-    instance.reloadAd();
+    // SDK の reloadAds メソッドを呼び出し
+    instance.reloadAds();
 }
 ```
 
@@ -138,19 +138,19 @@ var ad_controller = MTBADVS.InStream.AdController({ adspot_id: 'iv7wySo2K' });
 
 ### 広告リクエストの送信
 
-`loadAd()` メソッドで広告案件のリクエストを発行し、案件情報取得します。引数として完了後に呼び出されるコールバック関数を指定します。
+`loadAds()` メソッドで広告案件のリクエストを発行し、案件情報取得します。引数として完了後に呼び出されるコールバック関数を指定します。
 
 ```javascript
 var on_ad_loaded = function() {
     // ...
 };
 
-ad_controller.loadAd(on_ad_loaded);
+ad_controller.loadAds(on_ad_loaded);
 ```
 
 ### 広告案件情報の取り出し
 
-`loadAd()` でサーバより取得した案件情報は `getLoadedAds()` メソッドで取り出すことができます。
+`loadAds()` でサーバより取得した案件情報は `getLoadedAds()` メソッドで取り出すことができます。
 
 ```javascript
 var ads = ad_controller.getLoadedAds();
