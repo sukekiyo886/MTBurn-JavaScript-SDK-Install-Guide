@@ -52,7 +52,7 @@
 ```html
 <script src="http://js.mtburn.com/advs-instream.js"></script>
 <script>
-MTBADVS.InStream.defaultRun();
+MTBADVS.InStream.Default.run();
 </script>
 ```
 
@@ -97,7 +97,7 @@ SDK の JavaScript コードのロードと処理の呼び出しを行います�
 ```html
 <script src="http://js.mtburn.com/advs-instream.js"></script>
 <script>
-MTBADVS.InStream.defaultRun();
+MTBADVS.InStream.Default.run();
 </script>
 ```
 
@@ -105,22 +105,21 @@ MTBADVS.InStream.defaultRun();
 
 フィード型のサイトなどでユーザーがサイト下部に到達した際に追加フィードを読み込むような UI の場合に、追加で広告ロードを行うことも可能です。
 
-1. 初回の広告ロード時に呼び出す `defaultRun()` 関数は広告処理を行うクラスのインスタンスを返します。このインスタンスを変数で保持していただく必要があります。
-```javascript
-var instance = MTBADVS.InStream.defaultRun();
-```
-2. フィードの追加読み込み時に挿入される DOM 上に、初期状態と同様の広告位置指定要素を含めていただきます。
+- フィードの追加読み込み時に挿入される DOM 上に、初期状態と同様の広告位置指定要素を含めていただきます。
+
 ```html
 <div data-advs-adspot-id="iv7wySo2K" style="display:none"></div>
 ```
-3. フィード追加読み込み後に SDK の `reloadAds()` メソッドを呼び出します。呼び出し後に広告案件の追加取得と表示を行います。
+
+- フィード追加読み込み後に SDK の `MTBADVS.InStream.Default.reloadAds()` メソッドを呼び出します。呼び出し後に広告案件の追加取得と表示を行います。
+
 ```javascript
 // 追加フィードの読み込み後に呼び出される関数の例
 function onAdditionalFeedLoaded() {
     // ...
 
     // SDK の reloadAds メソッドを呼び出し
-    instance.reloadAds();
+    MTBADVS.InStream.Default.reloadAds();
 }
 ```
 
@@ -140,8 +139,14 @@ var ad_controller = MTBADVS.InStream.AdController({ adspot_id: 'iv7wySo2K' });
 
 `loadAds()` メソッドで広告案件のリクエストを発行し、案件情報取得します。引数として完了後に呼び出されるコールバック関数を指定します。
 
+コールバック関数の第一引数にはエラーオブジェクトが返されます。成功時には null となります。
+
 ```javascript
-var on_ad_loaded = function() {
+var on_ad_loaded = function(error) {
+    if (error) {
+        // エラー処理
+    }
+
     // ...
 };
 
@@ -185,6 +190,40 @@ var ads = ad_controller.getLoadedAds();
 ```javascript
 var ad_id = ads[0].ad_id;
 ad_controller.notifyImp(ad_id);
+```
+
+### 追加ロード
+
+フィードをさらに読み込んだ場合など、追加で広告をロードする場合について。
+
+`loadAd()` メソッドを呼び出すごとに、あたらしい広告案件を取得することができます。`getLoadedAds()` は表示済の案件も含め、これまでに取得した案件をすべて返します。
+
+始めにインスタンス化したコントローラーのインスタンスを使いまわす必要があります。 ひとつのインスタンスを使い続けると、重複した案件が返されることはありません。
+
+### ここまでの流れを踏まえた実装例
+
+```javascript
+var ad_controller = MTBADVS.InStream.AdController({ adspot_id: 'iv7wySo2K' });
+
+var on_ad_loaded = function(error) {
+    if (error) {
+        // エラー処理
+    }
+
+    // 案件の取得
+    var ads = ad_controller.getLoadedAds();
+
+    ads.forEach(function(ad) {
+        // 広告案件情報をもとに広告を表示 (媒体様実装)
+        showAd(ad);
+
+        // インプレッションの通知
+        var ad_id = ad.ad_id;
+        ad_controller.notifyImp(ad_id);
+    });
+};
+
+ad_controller.loadAds(on_ad_loaded);
 ```
 
 ### 注意事項
