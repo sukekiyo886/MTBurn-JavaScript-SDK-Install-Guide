@@ -26,7 +26,7 @@
 - `head` タグに広告ユニットのテンプレートを記載します。クリエイティブ素材の URL や広告テキストなどの挿入位置をプレイスホルダで指定します。
 
 ```html
-<script type="text/advs-instream-template" data-adspot-id="iv7wySo2K">
+<script type="text/advs-instream-template" data-adspot-id="MjQzOjIw">
 <div class="article">
   <div class="icon">
     <a href="{{click_url}}">
@@ -46,7 +46,7 @@
 - 広告表示位置に適当な空要素を作成します。`data-advs-adspot-id` 要素に事前に払い出された ID を指定します。この要素は広告の DOM に置き換えられます。
 
 ```html
-<div data-advs-adspot-id="iv7wySo2K" style="display:none"></div>
+<div data-advs-adspot-id="MjQzOjIw" style="display:none"></div>
 ```
 
 - 広告用スクリプトの呼び出しを行います。
@@ -89,7 +89,7 @@ MTBADVS.InStream.Default.run();
 
 
 ```html
-<div data-advs-adspot-id="iv7wySo2K" style="display:none"></div>
+<div data-advs-adspot-id="MjQzOjIw" style="display:none"></div>
 ```
 
 ### 広告のロード
@@ -110,7 +110,7 @@ MTBADVS.InStream.Default.run();
 - フィードの追加読み込み時に挿入される DOM 上に、初期状態と同様の広告位置指定要素を含めていただきます。
 
 ```html
-<div data-advs-adspot-id="iv7wySo2K" style="display:none"></div>
+<div data-advs-adspot-id="MjQzOjIw" style="display:none"></div>
 ```
 
 - フィード追加読み込み後に SDK の `MTBADVS.InStream.Default.reloadAds()` メソッドを呼び出します。呼び出し後に広告案件の追加取得と表示を行います。
@@ -134,7 +134,7 @@ SDK の raw API を使用し、広告の呼び出しやレンダリングなど�
 広告を管理するコントローラークラスのインスタンスを作成します。コンストラクタには広告枠 ID の指定が必須です。
 
 ```javascript
-var ad_controller = MTBADVS.InStream.AdController({ adspot_id: 'iv7wySo2K' });
+var ad_controller = MTBADVS.InStream.AdController({ adspot_id: 'MjQzOjIw' });
 ```
 
 ### 広告リクエストの送信
@@ -205,7 +205,7 @@ ad_controller.notifyImp(ad_id);
 ### ここまでの流れを踏まえた実装例
 
 ```javascript
-var ad_controller = MTBADVS.InStream.AdController({ adspot_id: 'iv7wySo2K' });
+var ad_controller = MTBADVS.InStream.AdController({ adspot_id: 'MjQzOjIw' });
 
 var on_ad_loaded = function(error) {
     if (error) {
