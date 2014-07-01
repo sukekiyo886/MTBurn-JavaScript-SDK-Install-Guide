@@ -134,7 +134,7 @@ SDK の raw API を使用し、広告の呼び出しやレンダリングなど�
 広告を管理するコントローラークラスのインスタンスを作成します。コンストラクタには広告枠 ID の指定が必須です。
 
 ```javascript
-var ad_controller = MTBADVS.InStream.AdController({ adspot_id: 'MjQzOjIw' });
+var ad_controller = new MTBADVS.InStream.AdController({ adspot_id: 'MjQzOjIw' });
 ```
 
 ### 広告リクエストの送信
@@ -205,7 +205,7 @@ ad_controller.notifyImp(ad_id);
 ### ここまでの流れを踏まえた実装例
 
 ```javascript
-var ad_controller = MTBADVS.InStream.AdController({ adspot_id: 'MjQzOjIw' });
+var ad_controller = new MTBADVS.InStream.AdController({ adspot_id: 'MjQzOjIw' });
 
 var on_ad_loaded = function(error) {
     if (error) {
