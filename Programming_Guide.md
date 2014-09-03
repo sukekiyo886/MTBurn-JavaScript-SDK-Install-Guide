@@ -149,29 +149,38 @@ description_length | 説明文の最大長を指定します | `10` | `これは
 
 ### コールバック関数による編集
 
-またコールバック関数を渡すことで、媒体様の任意の方法で文字長の調整が可能です。コールバック関数は広告表示の直前に呼び出されます。引数として案件情報が渡されるため、それを任意に編集する処理を記述できます。コールバック関数は `before_render` オプションに渡します。
+またコールバック関数を渡すことで、媒体様の任意の方法で文字長の調整が可能です。コールバック関数は広告表示の直前に呼び出されます。引数として案件情報と設置箇所が渡されます。よって案件情報を任意に編集する処理を記述できます。また設置箇所に応じて、案件の文字数などを変動させることも可能です。コールバック関数は `before_render` オプションに渡します。
 
-以下は、タイトルの先頭に `[PR]` という文字列を入れる。かつ、説明文を30文字に短縮し末尾に三点リーダーを付け加える例です。
+以下は、タイトルの先頭に `[PR]` という文字列を入れる。かつ、説明文を広告枠Aでは30文字、広告枠Bでは40文字に短縮し末尾に三点リーダーを付け加える例です。
 
 ```javascript
 MTBADVS.InStream.Default.run({
-    before_render: function(info) {
+    before_render: function(ad_info, placement_info) {
         // タイトルの先頭に `[PR]` を挿入
-        info.title = '[PR] ' + info.title;
+        ad_info.title = '[PR] ' + ad_info.title;
         
-        // 説明文を30文字におさまるよう切り取り、末尾に三点リーダーを加える
-        if (info.description.length > 30) {
-            info.description = info.description.substr(0, 29) + '…';
+        // 広告枠ごとに説明文の最大長を設定する
+        var desc_max_len = 30;
+        if (placement_info.adspot_id === 'ADSPOT_A') {
+            desc_max_len = 30;
+        } else if (placement_info.adspot_id === 'ADSPOT_B') {
+            desc_max_len = 40;
+        }
+        
+        // 説明文がdesc_max_len文字数におさまるよう切り取り、末尾に三点リーダーを加える
+        if (ad_info.description.length > desc_max_len) {
+            ad_info.description = ad_info.description.substr(0, desc_max_len - 1) + '…';
         }
         
         // 編集結果を return する
-        return info;
+        return ad_info;
     }
 });
 ```
 
 - `before_render` の第一引数には広告案件のオブジェクトが渡されます。オブジェクトが持つプロパティは [広告パラメータ](#広告パラメータ) を参照してください
-- コールバック関数は編集結果のオブジェクトを必ず `return` で返す必要があります。
+- `before_render` の第二引数には設置位置情報のオブジェクトが渡されます。オブジェクトが持つプロパティは `adspot_id` (広告枠ID) です。
+- コールバック関数は編集結果の案件情報オブジェクトを必ず `return` で返す必要があります。
 
 ## カスタム実装
 
