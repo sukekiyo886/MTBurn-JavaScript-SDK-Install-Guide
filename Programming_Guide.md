@@ -1,6 +1,6 @@
 # 目次
 
-- [InStream 広告](#instream-広告)
+- [In-Feed 広告](#in-feed-広告)
   - [Getting Started](#getting-started)
     - [広告枠の登録と設定](#広告枠の登録と設定)
     - [テンプレートの記述](#テンプレートの記述)
@@ -19,8 +19,10 @@
     - [注意事項](#注意事項)
   - [広告パラメータ](#広告パラメータ)
 - [名前空間](#名前空間)
+- [よくある質問](#よくある質問)
+    - [コード中にあるInstreamはどういう意味ですか](#コード中にあるInstreamはどういう意味ですか)
 
-# InStream 広告
+# In-Feed 広告
 
 ## Getting Started
 
@@ -158,7 +160,7 @@ MTBADVS.InStream.Default.run({
     before_render: function(ad_info, placement_info) {
         // タイトルの先頭に `[PR]` を挿入
         ad_info.title = '[PR] ' + ad_info.title;
-        
+
         // 広告枠ごとに説明文の最大長を設定する
         var desc_max_len = 30;
         if (placement_info.adspot_id === 'ADSPOT_A') {
@@ -166,12 +168,12 @@ MTBADVS.InStream.Default.run({
         } else if (placement_info.adspot_id === 'ADSPOT_B') {
             desc_max_len = 40;
         }
-        
+
         // 説明文がdesc_max_len文字数におさまるよう切り取り、末尾に三点リーダーを加える
         if (ad_info.description.length > desc_max_len) {
             ad_info.description = ad_info.description.substr(0, desc_max_len - 1) + '…';
         }
-        
+
         // 編集結果を return する
         return ad_info;
     }
@@ -304,3 +306,9 @@ ad_controller.loadAds(on_ad_loaded);
 # 名前空間
 
 `MTBADVS` 変数を `window` オブジェクト直下に作成します。この他のグローバル汚染は一切おこないません。
+
+#よくある質問
+
+##コード中にあるInstreamはどういう意味ですか
+
+このガイド中にある、`In-Feed` と同じ意味で用いられています
