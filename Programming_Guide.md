@@ -374,9 +374,6 @@ iframe 内での広告表示となるため、通常のタグに加えてスタ�
   - DFP のクリックマクロを挿入します。正しく挿入することで、正確な画面遷移とクリック数計測ができます。
 
 ```html
-<!-- css の読み込み等。媒体様によるカスタマイズが必要です -->
-<link rel="stylesheet" type="text/css" href="http://yourodmain/sampale.css">
-
 <!-- 広告ユニットのテンプレート -->
 <script type="text/advs-instream-template" data-adspot-id="NzYzOjEyMg">
 <div class="article">
