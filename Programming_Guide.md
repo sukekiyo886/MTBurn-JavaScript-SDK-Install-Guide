@@ -18,6 +18,9 @@
     - [ここまでの流れを踏まえた実装例](#ここまでの流れを踏まえた実装例)
     - [注意事項](#注意事項)
   - [広告パラメータ](#広告パラメータ)
+- [DFP連携](#DFP連携)
+  - [非同期タグの場合](#非同期タグの場合)
+  - [同期タグの場合](#同期タグの場合)
 - [名前空間](#名前空間)
 - [よくある質問](#よくある質問)
     - [コード中にあるInstreamはどういう意味ですか](#コード中にあるInstreamはどういう意味ですか)
@@ -302,6 +305,121 @@ ad_controller.loadAds(on_ad_loaded);
 | icon_image_url | アイコン型の正方形画像の URL | `http://banner.dspcdn.com/...` |
 | main_image_url | バナー型の矩形画像の URL | `http://banner.dspcdn.com/...` |
 | ad_id | 広告案件の ID | `123` |
+
+# DFP連携
+
+DFP を利用した配信も可能です。Google サイト運営者タグの非同期タグと同期タグでそれぞれ実装方法が異なります。媒体様で実装されているタグの種類に応じて対応ください。
+
+## 非同期タグの場合
+
+- 対象のオーダーにクリエイティブを追加します。クリエイティブのタイプは `サードパーティ` を選択します。
+- クリエイティブとして M.T.Burn のタグを入稿します。
+  - 通常の配信面同様に、広告ユニットのテンプレート、広告表示位置指定の空要素、広告用スクリプトの呼び出しのタグを入稿します
+  - 加えて、表示のために必要なスタイルシート呼び出しなどを適宜入れて頂く必要があります。
+  - DFP のクリックマクロを挿入します。正しく挿入することで、正確な画面遷移とクリック数計測ができます。
+
+```html
+<!-- css の読み込み等。媒体様によるカスタマイズが必要です -->
+<link rel="stylesheet" type="text/css" href="http://yourodmain/sampale.css">
+
+<!-- 広告ユニットのテンプレート -->
+<script type="text/advs-instream-template" data-adspot-id="NzYzOjEyMg">
+<div class="article">
+  <div class="icon">
+    <!-- [重要] dfp のクリックマクロを挿入し、直後に M.T.Burn のクリック URL をつけてください。 -->
+    <a href="%%CLICK_URL_UNESC%%{{click_url}}" target="_blank">
+      <img src="{{icon_image_url}}" />
+    </a>
+  </div>
+
+  <div class="contents">
+    <h3>{{title}}</h3>
+    <p>{{description}}</p>
+    <span class="source">Sponsored</span>
+  </div>
+</div>
+</script>
+
+<!-- 広告表示位置の指定 -->
+<div data-advs-adspot-id="NzYzOjEyMg" style="display:none"></div>
+
+<!-- 広告用スクリプトの呼び出し -->
+<script src="https://js.mtburn.com/advs-instream.js"></script>
+<script>
+MTBADVS.InStream.Default.run({
+    before_render:function(ad_info, placement_info) {
+        // [重要] dfp マクロとの連携のため、必ずこの行の実装をお願い致します。
+        ad_info.click_url = encodeURIComponent(ad_info.click_url);
+
+        // 説明文の切り上げなどを媒体様に必要に応じて実装していただきます。
+        // 広告枠の大きさが固定の場合、長い文字がはみ出す可能性があるため、切り上げ処理の実装を推奨します。
+        var desc_max_len = 30;
+        if (ad_info.description.length > desc_max_len) {
+            ad_info.description = ad_info.description.substr(0, desc_max_len - 1) + '…';
+        }
+
+        return ad_info;
+    }
+});
+</script>
+```
+
+iframe 内での広告表示となるため、通常のタグに加えてスタイルシートなどの読み込みが必要になります。
+
+## 同期タグの場合
+
+非同期タグの場合に必要なスタイルシートなどの呼び出しが、同期タグの場合は不要です。
+
+- 対象のオーダーにクリエイティブを追加します。クリエイティブのタイプは `サードパーティ` を選択します。
+- クリエイティブとして M.T.Burn のタグを入稿します。
+  - 通常の配信面同様に、広告ユニットのテンプレート、広告表示位置指定の空要素、広告用スクリプトの呼び出しのタグを入稿します
+  - DFP のクリックマクロを挿入します。正しく挿入することで、正確な画面遷移とクリック数計測ができます。
+
+```html
+<!-- css の読み込み等。媒体様によるカスタマイズが必要です -->
+<link rel="stylesheet" type="text/css" href="http://yourodmain/sampale.css">
+
+<!-- 広告ユニットのテンプレート -->
+<script type="text/advs-instream-template" data-adspot-id="NzYzOjEyMg">
+<div class="article">
+  <div class="icon">
+    <!-- [重要] dfp のクリックマクロを挿入し、直後に M.T.Burn のクリック URL をつけてください。 -->
+    <a href="%%CLICK_URL_UNESC%%{{click_url}}" target="_blank">
+      <img src="{{icon_image_url}}" />
+    </a>
+  </div>
+
+  <div class="contents">
+    <h3>{{title}}</h3>
+    <p>{{description}}</p>
+    <span class="source">Sponsored</span>
+  </div>
+</div>
+</script>
+
+<!-- 広告表示位置の指定 -->
+<div data-advs-adspot-id="NzYzOjEyMg" style="display:none"></div>
+
+<!-- 広告用スクリプトの呼び出し -->
+<script src="https://js.mtburn.com/advs-instream.js"></script>
+<script>
+MTBADVS.InStream.Default.run({
+    before_render:function(ad_info, placement_info) {
+        // [重要] dfp マクロとの連携のため、必ずこの行の実装をお願い致します。
+        ad_info.click_url = encodeURIComponent(ad_info.click_url);
+
+        // 説明文の切り上げなどを媒体様に必要に応じて実装していただきます。
+        // 広告枠の大きさが固定の場合、長い文字がはみ出す可能性があるため、切り上げ処理の実装を推奨します。
+        var desc_max_len = 30;
+        if (ad_info.description.length > desc_max_len) {
+            ad_info.description = ad_info.description.substr(0, desc_max_len - 1) + '…';
+        }
+
+        return ad_info;
+    }
+});
+</script>
+```
 
 # 名前空間
 
