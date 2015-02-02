@@ -30,19 +30,22 @@
 ## Getting Started
 
 - `head` タグに広告ユニットのテンプレートを記載します。クリエイティブ素材の URL や広告テキストなどの挿入位置をプレイスホルダで指定します。
+-In-Feed-Ads導入に際して、広告枠と隣接した位置に
+枠が広告であることがユーザーにとって明らかに分かる文言を追加していただく必要があります。
+（通常は「PR」もしくは「Sponsored」）
 
 ```html
 <script type="text/advs-instream-template" data-adspot-id="MjQzOjIw">
 <div class="article">
   <div class="icon">
     <a href="{{click_url}}">
-      <img src="{{icon_image_url}}" />
+      <img src="{{main_image_url}}" />
     </a>
   </div>
 
   <div class="contents">
     <h3>{{title}}</h3>
-    <p>{{description}}</p>
+    <p>【PR】{{description}}</p>
     <span class="source">Sponsored</span>
   </div>
 </div>
