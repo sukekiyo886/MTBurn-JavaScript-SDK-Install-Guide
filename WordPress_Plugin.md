@@ -162,16 +162,16 @@
 ```
 ※広告枠ID部分に下記の文字列を記入ください
 ![広告枠ID](Install_SDK_Guide_Images/adspot_id.png)
+![広告設定1](Install_SDK_Guide_Images/infeed1.png)
 
 
 - 「HTML広告の設定を編集」画面になります。
   1. ``HTML``を``ADVS-<表示位置>``に変更してください。 <表示位置>番目のフィードの次にインフィード広告が表示されます
   2. 「保存」を押して登録を完了してください
-![広告設定1](Install_SDK_Guide_Images/ad1.png)
+![広告設定2](Install_SDK_Guide_Images/infeed2.png)
 
 
 フィード一覧に、さらにインフィード広告を表示する場合は、[インフィード広告の表示](#インフィード広告の表示)を必要個数分実行してください。
-![広告設定2](Install_SDK_Guide_Images/ad2.png)
 
 
 **これで設定は完了です。**
