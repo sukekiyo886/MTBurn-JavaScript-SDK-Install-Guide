@@ -10,6 +10,9 @@
 	- [インフィード広告の表示](#setup2-2)
 
 
+WordPress にプラグインを用いてインフィード広告を導入する方法を説明します。
+
+
 <a name="install"></a>
 # WordPressプラグイン「Advertising Manager」のインストール
 
@@ -105,7 +108,7 @@
 
 <a name="setup2-1"></a>
 ### 広告テンプレートの設定
-- 広告枠のテンプレート(HTML)を準備してください。
+- 広告枠のテンプレート(HTML)を準備してください。媒体様ごとに異なるテンプレートが必要です。詳しくは [こちら](https://github.com/mtburn/MTBurn-JavaScript-SDK-Install-Guide/blob/master/Programming_Guide.md#user-content-%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%81%AE%E8%A8%98%E8%BF%B0) を参照ください。
 
 **例:**
 ```html
@@ -121,20 +124,12 @@
 </div>
 ```
 
-テンプレート内の下記の部分が動的に書き換わります。
-
-{{..}}部分 | 置き換わる値
------------- | -------------
-``title`` | 広告タイトル
-``description`` | 広告クリエイティブ
-``icon_image_url`` | アイコンのURL
-``click_url`` | 広告のリンク先URL
-
+テンプレート内で使うことができるパラメータは [こちら](https://github.com/mtburn/MTBurn-JavaScript-SDK-Install-Guide/blob/master/Programming_Guide.md#user-content-%E5%BA%83%E5%91%8A%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF) を参照ください。
 
 - WordPress管理画面の「広告＞新規作成」で、下記のコードを貼り付けて「インポート」してください。
 
 ```html
-<script type="text/advs-instream-template" data-adspot-id="MjQzOjIw">
+<script type="text/advs-instream-template" data-adspot-id="広告枠ID">
 ここに先ほど準備した広告テンプレートを貼り付けてください
 </script>
 <script src="//js.mtburn.com/advs-instream.js"></script>
@@ -142,9 +137,11 @@
 ```
 ![広告設定1](Install_SDK_Guide_Images/ad_setup1.png)
 
+※ 「**ここに先ほど準備した広告テンプレートを貼り付けてください**」部分に、さきほど準備いただいた広告テンプレートを貼り付けてください。また広告を表示する際の文字数などは、この時点での設定が必要です。詳しくは [こちら](https://github.com/mtburn/MTBurn-JavaScript-SDK-Install-Guide/blob/master/Programming_Guide.md#user-content-%E5%BA%83%E5%91%8A%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E8%AA%AC%E6%98%8E%E6%96%87%E3%81%AE%E7%9F%AD%E7%B8%AE) を参照ください。
 
-「**ここに先ほど準備した広告テンプレートを貼り付けてください**」部分に、さきほど準備いただいた広告テンプレートを貼り付けてください。
+※ `広告枠ID` の部分には、管理画面で発行した広告枠 ID を入力してください。
 
+![広告枠ID](Install_SDK_Guide_Images/adspot_id.png)
 
 - 「HTML広告の設定を編集」画面になります。
   1. ``HTML``を``ADVS``に変更してください
@@ -160,10 +157,10 @@
 ```html
 <div data-advs-adspot-id="広告枠ID" style="display:none"></div>
 ```
-※広告枠ID部分に下記の文字列を記入ください
-![広告枠ID](Install_SDK_Guide_Images/adspot_id.png)
-![広告設定1](Install_SDK_Guide_Images/infeed1.png)
 
+※ `広告枠ID` 部分には、先ほどと同様に管理画面で発行した広告枠 ID を入力してください。
+
+![広告設定1](Install_SDK_Guide_Images/infeed1.png)
 
 - 「HTML広告の設定を編集」画面になります。
   1. ``HTML``を``ADVS-<表示位置>``に変更してください。 <表示位置>番目のフィードの次にインフィード広告が表示されます
