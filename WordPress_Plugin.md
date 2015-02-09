@@ -139,7 +139,7 @@ WordPress にプラグインを用いてインフィード広告を導入する�
 
 ※ 「**ここに先ほど準備した広告テンプレートを貼り付けてください**」部分に、さきほど準備いただいた広告テンプレートを貼り付けてください。また広告を表示する際の文字数などは、この時点での設定が必要です。詳しくは [こちら](https://github.com/mtburn/MTBurn-JavaScript-SDK-Install-Guide/blob/master/Programming_Guide.md#user-content-%E5%BA%83%E5%91%8A%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E8%AA%AC%E6%98%8E%E6%96%87%E3%81%AE%E7%9F%AD%E7%B8%AE) を参照ください。
 
-※ `広告枠ID` の部分には、管理画面で発行した広告枠 ID を入力してください。
+※「**広告枠ID**」の部分には、管理画面で発行した広告枠 ID を入力してください。
 
 ![広告枠ID](Install_SDK_Guide_Images/adspot_id.png)
 
@@ -158,7 +158,7 @@ WordPress にプラグインを用いてインフィード広告を導入する�
 <div data-advs-adspot-id="広告枠ID" style="display:none"></div>
 ```
 
-※ `広告枠ID` 部分には、先ほどと同様に管理画面で発行した広告枠 ID を入力してください。
+※ 「**広告枠ID**」の部分には、管理画面で発行した広告枠 ID を入力してください。
 
 ![広告設定1](Install_SDK_Guide_Images/infeed1.png)
 
