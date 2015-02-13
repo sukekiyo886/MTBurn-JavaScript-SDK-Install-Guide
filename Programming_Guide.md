@@ -1,32 +1,34 @@
 # 目次
 
-- [In-Feed 広告](#in-feed-広告)
-  - [Getting Started](#getting-started)
-    - [広告枠の登録と設定](#広告枠の登録と設定)
-    - [テンプレートの記述](#テンプレートの記述)
-    - [広告挿入位置の指定](#広告挿入位置の指定)
-    - [広告のロード](#広告のロード)
-  - [広告の追加ロード](#広告の追加ロード)
-  - [広告タイトル・説明文の短縮](#広告タイトル説明文の短縮)
-  - [カスタム実装](#カスタム実装)
-    - [インスタンスの作成](#インスタンスの作成)
-    - [広告リクエストの送信](#広告リクエストの送信)
-    - [広告案件情報の取り出し](#広告案件情報の取り出し)
-    - [広告の表示](#広告の表示)
-    - [インプレッションの送信](#インプレッションの送信)
-    - [追加ロード](#追加ロード)
-    - [ここまでの流れを踏まえた実装例](#ここまでの流れを踏まえた実装例)
-    - [注意事項](#注意事項)
-  - [広告パラメータ](#広告パラメータ)
-- [DFP連携](#dfp連携)
-  - [非同期タグの場合](#非同期タグの場合)
-  - [同期タグの場合](#同期タグの場合)
-- [名前空間](#名前空間)
-- [よくある質問](#よくある質問)
-    - [コード中にあるInstreamはどういう意味ですか](#コード中にあるInstreamはどういう意味ですか)
+- [In-Feed 広告](#infeed)
+  - [Getting Started](#infeed/start)
+    - [広告枠の登録と設定](#infeed/start/adspot)
+    - [テンプレートの記述](#infeed/start/template)
+    - [広告挿入位置の指定](#infeed/start/position)
+    - [広告のロード](#infeed/start/load)
+  - [広告の追加ロード](#infeed/additional_load)
+  - [広告タイトル・説明文の短縮](#infeed/title_desc_length)
+  - [カスタム実装](#infeed/custom)
+    - [インスタンスの作成](#infeed/custom/instance)
+    - [広告リクエストの送信](#infeed/custom/load)
+    - [広告案件情報の取り出し](#infeed/custom/getads)
+    - [広告の表示](#infeed/custom/display)
+    - [インプレッションの送信](#infeed/custom/imp)
+    - [追加ロード](#infeed/custom/additional_load)
+    - [ここまでの流れを踏まえた実装例](#infeed/custom/example)
+    - [注意事項](#infeed/custom/caution)
+  - [広告パラメータ](#infeed/parameter)
+- [DFP連携](#dfp)
+  - [非同期タグの場合](#dfp/async_tag)
+  - [同期タグの場合](#dfp/sync_tag)
+- [名前空間](#namespace)
+- [よくある質問](#qa)
+    - [コード中にあるInstreamはどういう意味ですか](#qa/instream)
 
+<a name="infeed"></a>
 # In-Feed 広告
 
+<a name="infeed/start"></a>
 ## Getting Started
 
 - `head` タグに広告ユニットのテンプレートを記載します。クリエイティブ素材の URL や広告テキストなどの挿入位置をプレイスホルダで指定します。
@@ -67,6 +69,7 @@ MTBADVS.InStream.Default.run();
 </script>
 ```
 
+<a name="infeed/start/adspot"></a>
 ### 広告枠の登録と設定
 
 事前に広告枠の登録を行います。以下の情報を設定し、広告枠 ID が払い出されます。
@@ -80,6 +83,7 @@ MTBADVS.InStream.Default.run();
 
 **広告枠登録設定について、現在は担当者へお問い合わせください。**
 
+<a name="infeed/start/template"></a>
 ### テンプレートの記述
 
 テンプレートに広告ユニットの DOM 構造を記述します。広告データの挿入位置をプレイスホルダで指定します。
@@ -88,6 +92,7 @@ MTBADVS.InStream.Default.run();
 
 [利用できるパラメータはこちらを参照ください。](#広告パラメータ)
 
+<a name="infeed/start/position"></a>
 ### 広告挿入位置の指定
 
 広告挿入位置に空要素を作成してください。
@@ -101,6 +106,7 @@ MTBADVS.InStream.Default.run();
 <div data-advs-adspot-id="MjQzOjIw" style="display:none"></div>
 ```
 
+<a name="infeed/start/load"></a>
 ### 広告のロード
 
 SDK の JavaScript コードのロードと処理の呼び出しを行います。画面のロード完了後に広告案件取得と表示を行います。
@@ -112,6 +118,7 @@ MTBADVS.InStream.Default.run();
 </script>
 ```
 
+<a name="infeed/additional_load"></a>
 ## 広告の追加ロード
 
 フィード型のサイトなどでユーザーがサイト下部に到達した際に追加フィードを読み込むような UI の場合に、追加で広告ロードを行うことも可能です。
@@ -134,6 +141,7 @@ function onAdditionalFeedLoaded() {
 }
 ```
 
+<a name="infeed/title_desc_length"></a>
 ## 広告タイトル・説明文の短縮
 
 広告呼び出し時にオプションを追加することで、広告のタイトルや説明文のテキストを媒体様のサイトに合わせて短縮させることができます。
@@ -190,10 +198,12 @@ MTBADVS.InStream.Default.run({
 - `before_render` の第二引数には設置位置情報のオブジェクトが渡されます。オブジェクトが持つプロパティは `adspot_id` (広告枠ID) です。
 - コールバック関数は編集結果の案件情報オブジェクトを必ず `return` で返す必要があります。
 
+<a name="infeed/custom"></a>
 ## カスタム実装
 
 SDK の raw API を使用し、広告の呼び出しやレンダリングなどを任意のタイミングで行うことも可能です。以下に説明する API を用いて、媒体様による追加の実装が必要になります。
 
+<a name="infeed/custom/instance"></a>
 ### インスタンスの作成
 
 広告を管理するコントローラークラスのインスタンスを作成します。コンストラクタには広告枠 ID の指定が必須です。
@@ -202,6 +212,7 @@ SDK の raw API を使用し、広告の呼び出しやレンダリングなど�
 var ad_controller = new MTBADVS.InStream.AdController({ adspot_id: 'MjQzOjIw' });
 ```
 
+<a name="infeed/custom/load"></a>
 ### 広告リクエストの送信
 
 `loadAds()` メソッドで広告案件のリクエストを発行し、案件情報取得します。引数として完了後に呼び出されるコールバック関数を指定します。
@@ -220,6 +231,7 @@ var on_ad_loaded = function(error) {
 ad_controller.loadAds(on_ad_loaded);
 ```
 
+<a name="infeed/custom/getads"></a>
 ### 広告案件情報の取り出し
 
 `loadAds()` でサーバより取得した案件情報は `getLoadedAds()` メソッドで取り出すことができます。
@@ -246,10 +258,12 @@ var ads = ad_controller.getLoadedAds();
 
 各パラメータの詳細は [広告パラメータの節](#広告パラメータ) を参照してください。
 
+<a name="infeed/custom/display"></a>
 ### 広告の表示
 
 `getLoadedAds()` で取り出した案件情報をもとに、広告を表示させます。表示処理は媒体様で実装していただく必要があります。
 
+<a name="infeed/custom/imp"></a>
 ### インプレッションの送信
 
 広告の表示後、必ず `notifyImp()` でインプレッションの通知をする必要があります。引数として表示した `ad_id` を渡します。
@@ -259,6 +273,7 @@ var ad_id = ads[0].ad_id;
 ad_controller.notifyImp(ad_id);
 ```
 
+<a name="infeed/custom/additional_load"></a>
 ### 追加ロード
 
 フィードをさらに読み込んだ場合など、追加で広告をロードする場合について。
@@ -267,6 +282,7 @@ ad_controller.notifyImp(ad_id);
 
 始めにインスタンス化したコントローラーのインスタンスを使いまわす必要があります。 ひとつのインスタンスを使い続けると、重複した案件が返されることはありません。
 
+<a name="infeed/custom/example"></a>
 ### ここまでの流れを踏まえた実装例
 
 ```javascript
@@ -293,11 +309,13 @@ var on_ad_loaded = function(error) {
 ad_controller.loadAds(on_ad_loaded);
 ```
 
+<a name="infeed/custom/caution"></a>
 ### 注意事項
 
 - サーバから広告情報を取得はページの読み込みごとに行ってください。事前に取得したものをキャッシュし使いまわすことはご遠慮ください。
 - サーバから取得できる広告案件は、より効果が高いと期待される順に並んでいます。上位の案件は画面上の上位に表示することを推奨します。
 
+<a name="infeed/parameter"></a>
 ## 広告パラメータ
 
 | パラメータ名 | 説明 | 例 |
@@ -309,10 +327,12 @@ ad_controller.loadAds(on_ad_loaded);
 | main_image_url | バナー型の矩形画像の URL | `http://banner.dspcdn.com/...` |
 | ad_id | 広告案件の ID | `123` |
 
+<a name="dfp"></a>
 # DFP連携
 
 DFP を利用した配信も可能です。Google サイト運営者タグの非同期タグと同期タグでそれぞれ実装方法が異なります。媒体様で実装されているタグの種類に応じて対応ください。
 
+<a name="dfp/async_tag"></a>
 ## 非同期タグの場合
 
 - 対象のオーダーにクリエイティブを追加します。クリエイティブのタイプは `サードパーティ` を選択します。
@@ -369,6 +389,7 @@ MTBADVS.InStream.Default.run({
 
 iframe 内での広告表示となるため、通常のタグに加えてスタイルシートなどの読み込みが必要になります。
 
+<a name="dfp/sync_tag"></a>
 ## 同期タグの場合
 
 - 対象のオーダーにクリエイティブを追加します。クリエイティブのタイプは `サードパーティ` を選択します。
@@ -421,12 +442,15 @@ MTBADVS.InStream.Default.run({
 
 非同期タグの場合に必要なスタイルシートなどの呼び出しが、同期タグの場合は不要です。
 
+<a name="namespace"></a>
 # 名前空間
 
 `MTBADVS` 変数を `window` オブジェクト直下に作成します。この他のグローバル汚染は一切おこないません。
 
+<a name="qa"></a>
 #よくある質問
 
+<a name="qa/instream"></a>
 ##コード中にあるInstreamはどういう意味ですか
 
 このガイド中にある、`In-Feed` と同じ意味で用いられています
