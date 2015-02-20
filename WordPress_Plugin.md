@@ -64,6 +64,7 @@ WordPress にプラグインを用いてインフィード広告を導入する�
 ### 追加手順
 - WordPress管理画面の「外観＞テーマの編集」で、編集するテンプレート(``index.php``や``search.php``、``archive.php``)を選ぶ
 - 下記を参考にコードを追加してください(``advman_ad``で始まる2行)
+- ADVSの続きに、「_」と、選んだテンプレートの名前（例ではindex）を半角英数字で続けてください。
 - 「ファイルを更新」を押してテンプレートの編集を終了してください
 
 **編集前:**
@@ -94,11 +95,11 @@ WordPress にプラグインを用いてインフィード広告を導入する�
 		 */
 		get_template_part( 'content', get_post_format() );
 
-		advman_ad('ADVS-' . (is_null($advs) ? ($advs = 1) : ++$advs));	// ←この行を追加
+		advman_ad('ADVS_index-' . (is_null($advs_index) ? ($advs_index = 1) : ++$advs_index));	// ←この行を追加。最初だけ_テンプレート名の後に「ハイフン」を追加。
 
 	// End the loop.
 	endwhile;
-	advman_ad('ADVS');													// ←この行を追加
+	advman_ad('ADVS_index※');													// ←この行を追加
 ```
 ![テンプレートの編集](Install_SDK_Guide_Images/template2.png)
 
@@ -144,7 +145,7 @@ WordPress にプラグインを用いてインフィード広告を導入する�
 ![広告枠ID](Install_SDK_Guide_Images/adspot_id.png)
 
 - 「HTML広告の設定を編集」画面になります。
-  1. ``HTML``を``ADVS_○○○○``に変更してください
+  1. ``HTML``を``ADVS_index``に変更してください
   2. 「アカウント詳細＞Max Ads Per Page」を「1」に変更してください
   3. 「保存」を押して登録を完了してください
 ![広告設定2](Install_SDK_Guide_Images/ad_setup2.png)
@@ -163,7 +164,7 @@ WordPress にプラグインを用いてインフィード広告を導入する�
 ![広告設定1](Install_SDK_Guide_Images/infeed1.png)
 
 - 「HTML広告の設定を編集」画面になります。
-  1. ``HTML``を``ADVS_○○○○-<表示位置>``に変更してください。 <表示位置>番目のフィードの次にインフィード広告が表示されます
+  1. ``HTML``を``ADVS_テンプレート名-<表示位置>``に変更してください。 <表示位置>番目のフィードの次にインフィード広告が表示されます
   2. 「保存」を押して登録を完了してください
 ![広告設定2](Install_SDK_Guide_Images/infeed2.png)
 
