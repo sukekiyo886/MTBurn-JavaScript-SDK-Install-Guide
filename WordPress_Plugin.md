@@ -99,7 +99,7 @@ WordPress にプラグインを用いてインフィード広告を導入する�
 
 	// End the loop.
 	endwhile;
-	advman_ad('ADVS_index※');													// ←この行を追加
+	advman_ad('ADVS_index');													// ←この行を追加
 ```
 ![テンプレートの編集](Install_SDK_Guide_Images/template2.png)
 
