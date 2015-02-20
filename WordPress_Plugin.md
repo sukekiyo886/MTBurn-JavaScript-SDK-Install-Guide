@@ -114,7 +114,7 @@ WordPress にプラグインを用いてインフィード広告を導入する�
 ```html
 <div class="article">
 	<div class="icon">
-		<a href="{{click_url}}"><img src="{{icon_image_url}}"></a>
+		<a href="{{click_url}}"><img src="{{main_image_url}}"></a>
 	</div>
 	<div class="contents">
 		<h3>{{title}}</h3>
@@ -144,7 +144,7 @@ WordPress にプラグインを用いてインフィード広告を導入する�
 ![広告枠ID](Install_SDK_Guide_Images/adspot_id.png)
 
 - 「HTML広告の設定を編集」画面になります。
-  1. ``HTML``を``ADVS``に変更してください
+  1. ``HTML``を``ADVS_○○○○``に変更してください
   2. 「アカウント詳細＞Max Ads Per Page」を「1」に変更してください
   3. 「保存」を押して登録を完了してください
 ![広告設定2](Install_SDK_Guide_Images/ad_setup2.png)
@@ -163,7 +163,7 @@ WordPress にプラグインを用いてインフィード広告を導入する�
 ![広告設定1](Install_SDK_Guide_Images/infeed1.png)
 
 - 「HTML広告の設定を編集」画面になります。
-  1. ``HTML``を``ADVS-<表示位置>``に変更してください。 <表示位置>番目のフィードの次にインフィード広告が表示されます
+  1. ``HTML``を``ADVS_○○○○-<表示位置>``に変更してください。 <表示位置>番目のフィードの次にインフィード広告が表示されます
   2. 「保存」を押して登録を完了してください
 ![広告設定2](Install_SDK_Guide_Images/infeed2.png)
 
