@@ -149,7 +149,6 @@ WordPress管理画面の「広告＞新規作成」で、下記のコードを�
 
 - `ここに先ほど準備した広告テンプレートを貼り付けてください` 部分に、さきほど準備いただいた広告テンプレートを貼り付けてください。また広告を表示する際の文字数などは、この時点での設定が必要です。詳しくは [こちら](https://github.com/mtburn/MTBurn-JavaScript-SDK-Install-Guide/blob/master/Programming_Guide.md#user-content-%E5%BA%83%E5%91%8A%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E8%AA%AC%E6%98%8E%E6%96%87%E3%81%AE%E7%9F%AD%E7%B8%AE) を参照ください。
 - `広告枠ID` の部分には、管理画面で発行した広告枠 ID を入力してください。
-
 ![広告枠ID](Install_SDK_Guide_Images/adspot_id.png)
 
 インポート後、「HTML広告の設定を編集」画面になります。
