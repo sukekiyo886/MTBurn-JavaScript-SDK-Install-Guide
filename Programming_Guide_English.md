@@ -16,7 +16,7 @@
     - [Example of implementation](#infeed/custom/example)
     - [Attention](#infeed/custom/caution)
   - [Ads parameter](#infeed/parameter)
-- [For Using DFP(DoubleClick for Publisher)](#dfp)
+- [For Using DFP (DoubleClick for Publisher)](#dfp)
   - [In case of nonsynchronous tags](#dfp/async_tag)
   - [In case of synchronized tags](#dfp/sync_tag)
 - [Name space](#namespace)
@@ -328,7 +328,7 @@ It is better to show superior ads at the top.
 | ad_id | ID of ads content | `123` |
 
 <a name="dfp"></a>
-# For Using DFP(DoubleClick for Publisher)
+# For Using DFP (DoubleClick for Publisher)
 
 It is possible to deliver through DFP. 
 Insert tags you used, because how to implemented tags are different; whether tags are synchronized or not.
