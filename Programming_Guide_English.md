@@ -89,7 +89,7 @@ Register ad spots for each displayed format.
 Describe the DOM structure of ads unit on template. Assign the insert position of ads at placeholder.
 Describe placeholder using notation `{{parameter_name}}`
 
-About available parameters, please refer to [here](https://github.com/mtburn/MTBurn-JavaScript-SDK-Install-Guide/blob/master/Programming_Guide_English.md)
+About available parameters, please refer to [here](#infeed/parameter)
 
 <a name="infeed/start/position"></a>
 ### Designation of the ads insert position
@@ -192,7 +192,7 @@ MTBADVS.InStream.Default.run({
 });
 ```
 
-- Object of ads content will be given for the first argument of `before_render`. Please refer to [ads parameter for object’s property]().
+- Object of ads content will be given for the first argument of `before_render`. Please refer to [ads parameter for object’s property](#infeed/parameter).
 - Object of placement position will be given for the second argument of `before_render`. Object’s property is `adspot_id` (ad spots ID).
 - As for callback functions, the edited contents of ads object should necessarily be given back by `return`.
 
@@ -254,7 +254,7 @@ A response value of `getLoadedAds()` is as below.
 ]
 ```
 
-If you want to know about more details of each parameter, please refer to [clause of ads parameter]().
+If you want to know about more details of each parameter, please refer to [clause of ads parameter](#infeed/parameter).
 
 <a name="infeed/custom/display"></a>
 ### Ads display
