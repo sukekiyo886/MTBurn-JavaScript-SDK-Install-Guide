@@ -3,21 +3,21 @@
     - [Registration of Establishment of ad spots](#infeed/start/adspot)
     - [Template of ads unit](#infeed/start/template)
     - [Designation of the ads insert position](#infeed/start/position)
-    - [Loading adsvertisement](#infeed/start/load)
+    - [Loading ads](#infeed/start/load)
   - [Additional load of ads](#infeed/additional_load)
   - [Shortening of the title of ads and description](#infeed/title_desc_length)
   - [Customized implementation](#infeed/custom)
     - [Create an instance](#infeed/custom/instance)
     - [Sending ads request](#infeed/custom/load)
     - [Receiving ads content](#infeed/custom/getads)
-    - [Adsvertisement display](#infeed/custom/display)
+    - [Ads display](#infeed/custom/display)
     - [Sending notification of ads impression](#infeed/custom/imp)
     - [Additional Loading](#infeed/custom/additional_load)
     - [Example of implementation](#infeed/custom/example)
     - [Attention](#infeed/custom/caution)
-  - [Adsvertisement parameter](#infeed/parameter)
+  - [Ads parameter](#infeed/parameter)
 - [For Using DFP(DoubleClick for Publisher)](#dfp)
-  - [In case of synchronized tags](#dfp/async_tag)
+  - [In case of nonsynchronous tags](#dfp/async_tag)
   - [In case of synchronized tags](#dfp/sync_tag)
 - [Name space](#namespace)
 - [Q&A](#qa)
@@ -103,7 +103,7 @@ Assign `display:none` style as element in order not to affect the website displa
 ```
 
 <a name="infeed/start/load"></a>
-### Loading adsvertisement
+### Loading ads
 
 Call for JavaScript code of SDK for loading and processing. Acquire and display ads contentcases after the load of display is completed.
 
@@ -257,7 +257,7 @@ A response value of `getLoadedAds()` is as below.
 If you want to know about more details of each parameter, please refer to [clause of ads parameter]().
 
 <a name="infeed/custom/display"></a>
-### Adsvertisement display
+### Ads display
 
 You can show ads recieved by using `getLoadedAds()`. It needs to manage display processing.
 
@@ -316,7 +316,7 @@ Please refrain from keep using cash that you had got.
 It is better to show superior ads at the top.
 
 <a name="infeed/parameter"></a>
-## Adsvertisement parameter
+## Ads parameter
 
 | Parameter name | Explanation | Example |
 |---|---|---|
