@@ -31,7 +31,7 @@
 
 - Enter the template of ads unit on `head` tag.
 Assign the URL of creative material. Insert position of ads text at placeholder.
-At introducing In-Feed-Ads, add the wording to disclose that the frame adjacent to ad spots is an advertisement to users (ex. PR or Sponsored)
+For introducing In-Feed-Ads, add the wording to disclose that the frame adjacent to ad spots is an advertisement to users (ex. PR or Sponsored).
 
 ```html
 <script type="text/advs-instream-template" data-adspot-id="MjQzOjIw">
