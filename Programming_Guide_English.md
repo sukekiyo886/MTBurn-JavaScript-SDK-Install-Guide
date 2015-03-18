@@ -81,7 +81,7 @@ ad spots ID will be given by setting information below.
 
 Register ad spots for each displayed format.
 
-** 広告枠登録設定について、現在は担当者へお問い合わせください。 **
+**Please kindly contact us for Ad Spots Setup & Settings due to our UI preparation at the moment, however it should be available very soon. Apologies for any inconvenience caused.**
 
 <a name="infeed/start/template"></a>
 ### Template of ads unit
