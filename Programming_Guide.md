@@ -8,6 +8,7 @@
     - [広告のロード](#infeed/start/load)
   - [広告の追加ロード](#infeed/additional_load)
   - [広告タイトル・説明文の短縮](#infeed/title_desc_length)
+  - [広告表示の高速化](#infeed/immediately_option)
   - [カスタム実装](#infeed/custom)
     - [インスタンスの作成](#infeed/custom/instance)
     - [広告リクエストの送信](#infeed/custom/load)
@@ -197,6 +198,25 @@ MTBADVS.InStream.Default.run({
 - `before_render` の第一引数には広告案件のオブジェクトが渡されます。オブジェクトが持つプロパティは [広告パラメータ](#広告パラメータ) を参照してください
 - `before_render` の第二引数には設置位置情報のオブジェクトが渡されます。オブジェクトが持つプロパティは `adspot_id` (広告枠ID) です。
 - コールバック関数は編集結果の案件情報オブジェクトを必ず `return` で返す必要があります。
+
+<a name="infeed/immediately_option"></a>
+## 広告表示の高速化
+
+`immediately` オプションを追加することで、広告が表示されるまでの速度を速めることができます。
+
+以下は高速化のオプションを有効にする例です。
+
+```javascript
+MTBADVS.InStream.Default.run({
+    immediately: true
+});
+```
+
+このオプションはデフォルトでは無効になっています。
+
+`immediately` オプションが有効の場合、`MTBADVS.InStream.Default.run()` の呼び出し時に、即座に広告の読み込みと表示処理が開始されます。そのため、正しい順序で広告タグを貼る必要があります (広告テンプレートと広告挿入位置のタグの後に、広告呼び出しタグを設置する必要があります)。また M.T.Burn の広告が表示された後に動作する、媒体社様や外部の JavaScript の動作によって、表示が崩れる可能性があります。
+
+`immediately` オプションが無効の場合、`MTBADVS.InStream.Default.run()` の呼び出し後、ページの読み込みが完了した後に、広告の読み込みと表示処理が行われます。そのため表示の崩れは起きにくくなりますが、オプション有効時に比べて、広告が表示されるまでの時間が長くなります。
 
 <a name="infeed/custom"></a>
 ## カスタム実装
