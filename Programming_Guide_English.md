@@ -6,6 +6,7 @@
     - [Loading ads](#infeed/start/load)
   - [Additional load of ads](#infeed/additional_load)
   - [Shortening of the title of ads and description](#infeed/title_desc_length)
+  - [Display ads faster](#infeed/immediately_option)
   - [Customized implementation](#infeed/custom)
     - [Create an instance](#infeed/custom/instance)
     - [Sending ads request](#infeed/custom/load)
@@ -195,6 +196,25 @@ MTBADVS.InStream.Default.run({
 - Object of ads content will be given for the first argument of `before_render`. Please refer to [ads parameter for object’s property](#infeed/parameter).
 - Object of placement position will be given for the second argument of `before_render`. Object’s property is `adspot_id` (ad spots ID).
 - As for callback functions, the edited contents of ads object should necessarily be given back by `return`.
+
+<a name="infeed/immediately_option"></a>
+## Display ads faster
+
+You can enable `immediately` option to display ads faster.
+
+This below is an example to enable this option.
+
+```js
+MTBADVS.InStream.Default.run({
+   immediately: true
+});
+```
+
+The option is disabled if not specified.
+
+If `immediately` option is enabled, the ad loading and rendering process is executed immediately after `MTBADVS.InStream.Default.run()` function is called. For this reason, an ad call script must be inserted after the definition of ad template unit and elements of ad display position. And perhaps, also for this reason, other scripts may affect the M.T.Burn ad display.
+
+If `immediately` option is disabled, the ad loading and rendering process is executed after the page load is finished. In this way, the ads may be displayed correctly in most cases but it should take longer time to display.
 
 <a name="infeed/custom"></a>
 ## Customized implementation
