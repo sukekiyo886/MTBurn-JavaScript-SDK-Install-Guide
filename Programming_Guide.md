@@ -138,7 +138,7 @@ MTBADVS.InStream.Default.run();
 
 プレイスホルダは `{{parameter_name}}` という記法で記述します。
 
-[利用できるパラメータはこちらを参照ください。](#広告パラメータ)
+[利用できるパラメータはこちらを参照ください。](#infeed/parameter)
 
 <a name="infeed/start/position"></a>
 ### 広告挿入位置の指定
@@ -242,7 +242,7 @@ MTBADVS.InStream.Default.run({
 });
 ```
 
-- `before_render` の第一引数には広告案件のオブジェクトが渡されます。オブジェクトが持つプロパティは [広告パラメータ](#広告パラメータ) を参照してください
+- `before_render` の第一引数には広告案件のオブジェクトが渡されます。オブジェクトが持つプロパティは [広告パラメータ](#infeed/parameter) を参照してください
 - `before_render` の第二引数には設置位置情報のオブジェクトが渡されます。オブジェクトが持つプロパティは `adspot_id` (広告枠ID) です。
 - コールバック関数は編集結果の案件情報オブジェクトを必ず `return` で返す必要があります。
 
@@ -323,7 +323,7 @@ var ads = ad_controller.getLoadedAds();
 ]
 ```
 
-各パラメータの詳細は [広告パラメータの節](#広告パラメータ) を参照してください。
+各パラメータの詳細は [広告パラメータの節](#infeed/parameter) を参照してください。
 
 <a name="infeed/custom/display"></a>
 ### 広告の表示
