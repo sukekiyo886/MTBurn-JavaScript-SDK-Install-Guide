@@ -1,5 +1,9 @@
 - [In-Feed Advertisement](#infeed)
-  - [Getting Started](#infeed/start)
+  - [Getting Started](#infeed/simple)
+    - [広告枠の登録](#infeed/simple/adspot)
+    - [広告テンプレートの入稿](#infeed/simple/template)
+    - [広告タグの発行](#infeed/simple/tag)
+  - [タグ側でのテンプレート実装](#infeed/start)
     - [Registration of Establishment of ad spots](#infeed/start/adspot)
     - [Template of ads unit](#infeed/start/template)
     - [Designation of the ads insert position](#infeed/start/position)
@@ -27,8 +31,51 @@
 <a name="infeed"></a>
 # In-Feed Advertisement
 
-<a name="infeed/start"></a>
+<a name="infeed/simple"></a>
 ## Getting Started
+
+<a name="infeed/simple/adspot"></a>
+### 広告枠の登録
+
+管理 UI から広告枠を登録します。事前に管理 UI へのアカウント開設が必要です。
+
+<a name="infeed/simple/template"></a>
+### 広告テンプレートの入稿
+
+管理 UI から広告テンプレートを入稿します。以下のように `{{click_url}}` という記法でプレースホルダーを指定すると、その部分が広告素材に置き換えられ、広告として表示されます。
+
+[使用できるプレースホルダーはこちらを参照してください。](#infeed/parameter)
+
+```html
+<div class="article">
+  <div class="icon">
+    <a href="{{click_url}}">
+      <img src="{{main_image_url}}" />
+    </a>
+  </div>
+
+  <div class="contents">
+    <h3>{{title}}</h3>
+    <p>【PR】{{description}}</p>
+    <span class="source">Sponsored</span>
+  </div>
+</div>
+```
+
+<a name="infeed/simple/tag"></a>
+### 広告タグの発行
+
+管理 UI からタグを発行します。以下の様なタグが発行されるので、ページ内の広告を表示させたい位置に挿入します。
+
+```html
+<script type="text/javascript" src="http://js.mtburn.com/advs-instream.js"></script>
+<div data-advs-adspot-id="広告枠ID" style="display:none">
+<script type="text/javascript">MTBADVS.InStream.Default.run()</script>
+</div>
+```
+
+<a name="infeed/start"></a>
+## タグ側でのテンプレート実装
 
 - Enter the template of ads unit on `head` tag.
 Assign the URL of creative material. Insert position of ads text at placeholder.
