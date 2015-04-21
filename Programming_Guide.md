@@ -59,7 +59,7 @@
   <div class="contents">
     <h3>{{title}}</h3>
     <p>【PR】{{description}}</p>
-    <span class="source">Sponsored</span>
+    <span class="source">{{displayed_advertiser}}</span>
   </div>
 </div>
 ```
@@ -81,10 +81,9 @@
 
 広告テンプレートをタグに記載することで、管理 UI に入稿せずに利用いただけます。実装がやや複雑になりますが、より細かくカスタマイズした実装が可能です。
 
-- `head` タグに広告ユニットのテンプレートを記載します。クリエイティブ素材の URL や広告テキストなどの挿入位置をプレースホルダーで指定します。
-In-Feed-Ads導入に際して、広告枠と隣接した位置に
-枠が広告であることがユーザーにとって明らかに分かる文言を追加していただく必要があります。
-（通常は「PR」もしくは「Sponsored」）
+- `head` タグに広告ユニットのテンプレートを記載します。
+ - クリエイティブ素材の URL や広告テキストなどの挿入位置をプレースホルダーで指定します。
+ - In-Feed-Ads導入に際して、広告枠と隣接した位置に枠が広告であることがユーザーにとって明らかに分かる文言として`{{displayed_advertiser}}`を追加していただく必要があります（この文言は広告主による指定がない場合は 「Sponsored」 と表記されます）。
 
 ```html
 <script type="text/advs-instream-template" data-adspot-id="MjQzOjIw">
@@ -98,7 +97,7 @@ In-Feed-Ads導入に際して、広告枠と隣接した位置に
   <div class="contents">
     <h3>{{title}}</h3>
     <p>【PR】{{description}}</p>
-    <span class="source">Sponsored</span>
+    <span class="source">{{displayed_advertiser}}</span>
   </div>
 </div>
 </script>
@@ -190,9 +189,9 @@ function onAdditionalFeedLoaded() {
 ```
 
 <a name="infeed/title_desc_length"></a>
-## 広告タイトル・説明文の短縮
+## 広告タイトル・説明文・表記広告主名の短縮
 
-広告呼び出し時にオプションを追加することで、広告のタイトルや説明文のテキストを媒体様のサイトに合わせて短縮させることができます。
+広告呼び出し時にオプションを追加することで、広告のタイトルや説明文のテキスト、表記広告主名を媒体様のサイトに合わせて短縮させることができます。
 
 以下は説明文の長さを最大 30 文字にする例です。
 
@@ -210,6 +209,7 @@ MTBADVS.InStream.Default.run({
 --- | --- | --- | ---
 title_length | タイトルの最大長を指定します | `5` | `テストタイトル` -> `テストタ…`
 description_length | 説明文の最大長を指定します | `10` | `これはテスト説明文です` -> `これはテスト説明文…`
+displayed_advertiser_length | 表記広告主名の最大長を指定します | `5` | `テスト広告主提供` -> `テスト広…`
 
 ### コールバック関数による編集
 
@@ -318,6 +318,7 @@ var ads = ad_controller.getLoadedAds();
         "main_image_url": "http://...",
         "icon_image_url": "http://...",
         "ad_id": 123,
+        "displayed_advertiser": "テスト広告主提供"
     },
     ...
 ]
@@ -393,6 +394,7 @@ ad_controller.loadAds(on_ad_loaded);
 | icon_image_url | アイコン型の正方形画像の URL | `http://banner.dspcdn.com/...` |
 | main_image_url | バナー型の矩形画像の URL | `http://banner.dspcdn.com/...` |
 | ad_id | 広告案件の ID | `123` |
+| displayed_advertiser | 表記広告主名 | `テスト広告主提供` |
 
 <a name="dfp"></a>
 # DFP連携
@@ -425,7 +427,7 @@ DFP を利用した配信も可能です。Google サイト運営者タグの非
   <div class="contents">
     <h3>{{title}}</h3>
     <p>{{description}}</p>
-    <span class="source">Sponsored</span>
+    <span class="source">{{displayed_advertiser}}</span>
   </div>
 </div>
 </script>
@@ -478,7 +480,7 @@ iframe 内での広告表示となるため、通常のタグに加えてスタ�
   <div class="contents">
     <h3>{{title}}</h3>
     <p>{{description}}</p>
-    <span class="source">Sponsored</span>
+    <span class="source">{{displayed_advertiser}}</span>
   </div>
 </div>
 </script>
