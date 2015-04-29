@@ -1,9 +1,9 @@
 - [In-Feed Advertisement](#infeed)
   - [Getting Started](#infeed/simple)
-    - [広告枠の登録](#infeed/simple/adspot)
-    - [広告テンプレートの入稿](#infeed/simple/template)
-    - [広告タグの発行](#infeed/simple/tag)
-  - [タグ側でのテンプレート実装](#infeed/start)
+    - [Registration ad spot](#infeed/simple/adspot)
+    - [Draft ad template](#infeed/simple/template)
+    - [Issuance ad tags](#infeed/simple/tag)
+  - [Implementation template to tags](#infeed/start)
     - [Registration of Establishment of ad spots](#infeed/start/adspot)
     - [Template of ads unit](#infeed/start/template)
     - [Designation of the ads insert position](#infeed/start/position)
@@ -35,16 +35,16 @@
 ## Getting Started
 
 <a name="infeed/simple/adspot"></a>
-### 広告枠の登録
+### Registration ad spot
 
-管理 UI から広告枠を登録します。事前に管理 UI へのアカウント開設が必要です。
+You set ad spots from admin UI. You need to set up your account to admin UI.
 
 <a name="infeed/simple/template"></a>
-### 広告テンプレートの入稿
+### Draft ad template
 
-管理 UI から広告テンプレートを入稿します。以下のように `{{click_url}}` という記法でプレースホルダーを指定すると、その部分が広告素材に置き換えられ、広告として表示されます。
+You draft ad template from admin UI. Assign a placeholder by coding `{{click_url}}` as below and then the area is shown as ad spot.
 
-[使用できるプレースホルダーはこちらを参照してください。](#infeed/parameter)
+[Please refer here to know which placeholders you can use.](#infeed/parameter)
 
 ```html
 <div class="article">
@@ -63,19 +63,19 @@
 ```
 
 <a name="infeed/simple/tag"></a>
-### 広告タグの発行
+### Issuance ad tags
 
-管理 UI からタグを発行します。以下の様なタグが発行されるので、ページ内の広告を表示させたい位置に挿入します。
+Issue tags from admin UI. Insert tags like as below to place you want to show ad in a page.
 
 ```html
 <script type="text/javascript" src="http://js.mtburn.com/advs-instream.js"></script>
-<div data-advs-adspot-id="広告枠ID" style="display:none">
+<div data-advs-adspot-id="ad spot ID" style="display:none">
 <script type="text/javascript">MTBADVS.InStream.Default.run()</script>
 </div>
 ```
 
 <a name="infeed/start"></a>
-## タグ側でのテンプレート実装
+## Implementation templates to tags
 
 - Enter the template of ads unit on `head` tag.
 Assign the URL of creative material. Insert position of ads text at placeholder.
