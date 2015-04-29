@@ -76,7 +76,8 @@ Issue tags from admin UI. Insert tags like as below to place you want to show ad
 
 <a name="infeed/start"></a>
 ## Implementation templates to tags
-
++
++Code ad templates in tags, and you don’t need to draft them from admin UI. If you do so, implementation will be complex but you can implement more flexible.
 - Enter the template of ads unit on `head` tag.
 Assign the URL of creative material. Insert position of ads text at placeholder.
 For introducing In-Feed-Ads, add the wording to disclose that the frame adjacent to ad spots is an advertisement to users (ex. PR or Sponsored).
