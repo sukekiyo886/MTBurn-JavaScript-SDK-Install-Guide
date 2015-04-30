@@ -57,7 +57,7 @@ You draft ad template from admin UI. Assign a placeholder by coding `{{click_url
   <div class="contents">
     <h3>{{title}}</h3>
     <p>【PR】{{description}}</p>
-    <span class="source">Sponsored</span>
+    <span class="source">{{displayed_advertiser}}</span>
   </div>
 </div>
 ```
@@ -79,9 +79,9 @@ Issue tags from admin UI. Insert tags like as below to place you want to show ad
 
 Code ad templates in tags, and you don’t need to draft them from admin UI. If you do so, implementation will be complex but you can implement more flexible.
 
-- Enter the template of ads unit on `head` tag.
-Assign the URL of creative material. Insert position of ads text at placeholder.
-For introducing In-Feed-Ads, add the wording to disclose that the frame adjacent to ad spots is an advertisement to users (ex. PR or Sponsored).
+- `head` タグに広告ユニットのテンプレートを記載します。
+- クリエイティブ素材の URL や広告テキストなどの挿入位置をプレースホルダーで指定します。
+- In-Feed-Ads導入に際して、広告枠と隣接した位置に枠が広告であることがユーザーにとって明らかに分かる文言として`{{displayed_advertiser}}`を追加していただく必要があります（この文言は広告主による指定がない場合は 「Sponsored」 と表記されます）。
 
 ```html
 <script type="text/advs-instream-template" data-adspot-id="MjQzOjIw">
@@ -95,7 +95,7 @@ For introducing In-Feed-Ads, add the wording to disclose that the frame adjacent
  <div class="contents">
    <h3>{{title}}</h3>
    <p>【PR】{{description}}</p>
-   <span class="source">Sponsored</span>
+   <span class="source">{{displayed_advertiser}}</span>
  </div>
 </div>
 </script>
@@ -189,9 +189,9 @@ function onAdditionalFeedLoaded() {
 ```
 
 <a name="infeed/title_desc_length"></a>
-## Shortening of the title of ads and description
+## 広告タイトル・説明文・表記広告主名の短縮
 
-Adding the option when ads are called enables to shorten the title of ads and description depending on your website.
+広告呼び出し時にオプションを追加することで、広告のタイトルや説明文のテキスト、表記広告主名を媒体様のサイトに合わせて短縮させることができます。
 
 This below is an example for description, which has up to 30 letters.
 
@@ -209,6 +209,7 @@ These options below are capable to be assigned.
 |---|---|---|---|
 | title_length | Assign the maximum length of title | `5` | `This is title` -> `This...`|
 | description_length | Assign the maximum length of description | `10` | `This is description` -> `This is des...`|  
+| displayed_advertiser_length | 表記広告主名の最大長を指定します | `5` | `テスト広告主提供` -> `テスト広… |
 
 ### Editing by callback functions
 
@@ -318,6 +319,7 @@ A response value of `getLoadedAds()` is as below.
     "main_image_url": "http://...",
     "icon_image_url": "http://...",
     "ad_id": 123,
+    "displayed_advertiser": "テスト広告主提供"
   },
   ...
 ]
@@ -395,6 +397,7 @@ It is better to show superior ads at the top.
 | icon_image_url | URL of icon style of quadrate picture | `http://banner.dspcdn.com/…` |
 | main_image_url | URL of banner style rectangular picture | `http://banner.dspcdn.com/…` |
 | ad_id | ID of ads content | `123` |
+| displayed_advertiser | 表記広告主名 | `テスト広告主提供` |
 
 <a name="dfp"></a>
 # For Using DFP (DoubleClick for Publisher)
@@ -428,7 +431,7 @@ Insert tags you used, because how to implemented tags are different; whether tag
     <div class="contents">
       <h3>{{title}}</h3>
       <p>{{description}}</p>
-      <span class="source">Sponsored</span>
+      <span class="source">{{displayed_advertiser}}</span>
     </div>
   </div>
 </script>
@@ -481,7 +484,7 @@ It needs to read a CSS additionally because of displaying ads in iframe.
   <div class="contents">
     <h3>{{title}}</h3>
     <p>{{description}}</p>
-    <span class="source">Sponsored</span>
+    <span class="source">{{displayed_advertiser}}</span>
   </div>
 </div>
 </script>
