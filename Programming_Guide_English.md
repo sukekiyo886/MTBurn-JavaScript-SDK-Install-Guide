@@ -57,7 +57,7 @@ You draft ad template from admin UI. Assign a placeholder by coding `{{click_url
   <div class="contents">
     <h3>{{title}}</h3>
     <p>【PR】{{description}}</p>
-    <span class="source">Sponsored</span>
+    <span class="source">{{displayed_advertiser}}</span>
   </div>
 </div>
 ```
@@ -79,9 +79,9 @@ Issue tags from admin UI. Insert tags like as below to place you want to show ad
 
 Code ad templates in tags, and you don’t need to draft them from admin UI. If you do so, implementation will be complex but you can implement more flexible.
 
-- Enter the template of ads unit on `head` tag.
-Assign the URL of creative material. Insert position of ads text at placeholder.
-For introducing In-Feed-Ads, add the wording to disclose that the frame adjacent to ad spots is an advertisement to users (ex. PR or Sponsored).
+- Code template of ad unit into `head` tags.
+- Name URLs of creative materials and the place inserted ad texts in placeholder.
+- About implementation of In-Feed-Ads, you need to write `{{displayed_advertiser}}`means this spot is an ad one next to ad spot. (in case advertisers don’t assign anything, the word “Sponsored” is showed there. )
 
 ```html
 <script type="text/advs-instream-template" data-adspot-id="MjQzOjIw">
@@ -95,7 +95,7 @@ For introducing In-Feed-Ads, add the wording to disclose that the frame adjacent
  <div class="contents">
    <h3>{{title}}</h3>
    <p>【PR】{{description}}</p>
-   <span class="source">Sponsored</span>
+   <span class="source">{{displayed_advertiser}}</span>
  </div>
 </div>
 </script>
@@ -189,9 +189,9 @@ function onAdditionalFeedLoaded() {
 ```
 
 <a name="infeed/title_desc_length"></a>
-## Shortening of the title of ads and description
+## Reduction of ad title, explanation and advertiser’s name.
 
-Adding the option when ads are called enables to shorten the title of ads and description depending on your website.
+You add extension to your ad, and you can reduce ad title, explanation and advertiser’s name in order to optimize for each media.
 
 This below is an example for description, which has up to 30 letters.
 
@@ -209,6 +209,7 @@ These options below are capable to be assigned.
 |---|---|---|---|
 | title_length | Assign the maximum length of title | `5` | `This is title` -> `This...`|
 | description_length | Assign the maximum length of description | `10` | `This is description` -> `This is des...`|  
+| displayed_advertiser_length | Assign the maximum length of advertiser's name | `5` | `Provided by test advertiser` -> `Test ad… |
 
 ### Editing by callback functions
 
@@ -318,6 +319,7 @@ A response value of `getLoadedAds()` is as below.
     "main_image_url": "http://...",
     "icon_image_url": "http://...",
     "ad_id": 123,
+    "displayed_advertiser": "Provided by test advertiser"
   },
   ...
 ]
@@ -395,6 +397,7 @@ It is better to show superior ads at the top.
 | icon_image_url | URL of icon style of quadrate picture | `http://banner.dspcdn.com/…` |
 | main_image_url | URL of banner style rectangular picture | `http://banner.dspcdn.com/…` |
 | ad_id | ID of ads content | `123` |
+| displayed_advertiser | Name of advertiser | `Provided by test advertiser` |
 
 <a name="dfp"></a>
 # For Using DFP (DoubleClick for Publisher)
@@ -428,7 +431,7 @@ Insert tags you used, because how to implemented tags are different; whether tag
     <div class="contents">
       <h3>{{title}}</h3>
       <p>{{description}}</p>
-      <span class="source">Sponsored</span>
+      <span class="source">{{displayed_advertiser}}</span>
     </div>
   </div>
 </script>
@@ -481,7 +484,7 @@ It needs to read a CSS additionally because of displaying ads in iframe.
   <div class="contents">
     <h3>{{title}}</h3>
     <p>{{description}}</p>
-    <span class="source">Sponsored</span>
+    <span class="source">{{displayed_advertiser}}</span>
   </div>
 </div>
 </script>
