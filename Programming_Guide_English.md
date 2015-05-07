@@ -79,9 +79,9 @@ Issue tags from admin UI. Insert tags like as below to place you want to show ad
 
 Code ad templates in tags, and you don’t need to draft them from admin UI. If you do so, implementation will be complex but you can implement more flexible.
 
-- `head` タグに広告ユニットのテンプレートを記載します。
-- クリエイティブ素材の URL や広告テキストなどの挿入位置をプレースホルダーで指定します。
-- In-Feed-Ads導入に際して、広告枠と隣接した位置に枠が広告であることがユーザーにとって明らかに分かる文言として`{{displayed_advertiser}}`を追加していただく必要があります（この文言は広告主による指定がない場合は 「Sponsored」 と表記されます）。
+- Code template of ad unit into `head` tags.
+- Name URLs of creative materials and the place inserted ad texts in placeholder.
+- About implementation of In-Feed-Ads, you need to write `{{displayed_advertiser}}`means this spot is an ad one next to ad spot. (in case advertisers don’t assign anything, the word “Sponsored” is showed there. )
 
 ```html
 <script type="text/advs-instream-template" data-adspot-id="MjQzOjIw">
@@ -189,9 +189,9 @@ function onAdditionalFeedLoaded() {
 ```
 
 <a name="infeed/title_desc_length"></a>
-## 広告タイトル・説明文・表記広告主名の短縮
+## Reduction of ad title, explanation and advertiser’s name.
 
-広告呼び出し時にオプションを追加することで、広告のタイトルや説明文のテキスト、表記広告主名を媒体様のサイトに合わせて短縮させることができます。
+You add extension to your add, and you can reduce ad title, explanation and advertiser’s name in order to optimize for each media.
 
 This below is an example for description, which has up to 30 letters.
 
