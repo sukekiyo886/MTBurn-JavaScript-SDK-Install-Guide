@@ -209,7 +209,7 @@ These options below are capable to be assigned.
 |---|---|---|---|
 | title_length | Assign the maximum length of title | `5` | `This is title` -> `This...`|
 | description_length | Assign the maximum length of description | `10` | `This is description` -> `This is des...`|  
-| displayed_advertiser_length | 表記広告主名の最大長を指定します | `5` | `テスト広告主提供` -> `テスト広… |
+| displayed_advertiser_length | Assign the maximum length of advertiser's name | `5` | `Provided by test advertiser` -> `Test ad… |
 
 ### Editing by callback functions
 
@@ -319,7 +319,7 @@ A response value of `getLoadedAds()` is as below.
     "main_image_url": "http://...",
     "icon_image_url": "http://...",
     "ad_id": 123,
-    "displayed_advertiser": "テスト広告主提供"
+    "displayed_advertiser": "Provided by test advertiser"
   },
   ...
 ]
@@ -397,7 +397,7 @@ It is better to show superior ads at the top.
 | icon_image_url | URL of icon style of quadrate picture | `http://banner.dspcdn.com/…` |
 | main_image_url | URL of banner style rectangular picture | `http://banner.dspcdn.com/…` |
 | ad_id | ID of ads content | `123` |
-| displayed_advertiser | 表記広告主名 | `テスト広告主提供` |
+| displayed_advertiser | Name of advertiser | `Provided by test advertiser` |
 
 <a name="dfp"></a>
 # For Using DFP (DoubleClick for Publisher)
