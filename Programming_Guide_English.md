@@ -191,7 +191,7 @@ function onAdditionalFeedLoaded() {
 <a name="infeed/title_desc_length"></a>
 ## Reduction of ad title, explanation and advertiser’s name.
 
-You add extension to your add, and you can reduce ad title, explanation and advertiser’s name in order to optimize for each media.
+You add extension to your ad, and you can reduce ad title, explanation and advertiser’s name in order to optimize for each media.
 
 This below is an example for description, which has up to 30 letters.
 
