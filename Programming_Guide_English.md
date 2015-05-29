@@ -527,3 +527,4 @@ It creates `MTBADVS` argument just beneath `window` object. Use `MTBADVS` argume
 ## What is meaning of `Instream` in codes?
 
 It has same role as `In-Feed` in the guide.
+
